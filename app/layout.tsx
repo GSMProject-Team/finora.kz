@@ -1,9 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Finora.kz — Finance • Legal • Accounting",
-  description:
-    "Finora — бухгалтерлік, қаржылық және заңгерлік-құқықтық қызметтерге арналған платформа.",
+  title: "Finora.kz — Tech • Finance • Legal",
+  description: "Finora — бухгалтерлік, қаржылық және заңгерлік-құқықтық қызметтерге арналған платформа.",
 };
 
 export default function RootLayout({
