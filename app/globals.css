@@ -2,18 +2,20 @@
 
 :root {
   --bg: #0b1020;
-  --card: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.10);
-  --text: rgba(255,255,255,0.92);
-  --muted: rgba(255,255,255,0.70);
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.10);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
   --accent: #61f0c1;
 }
 
 html, body { height: 100%; }
+
 body {
   margin: 0;
-  background: radial-gradient(1200px 700px at 20% 10%, rgba(97,240,193,0.18), transparent 60%),
-              radial-gradient(900px 600px at 80% 30%, rgba(93,124,255,0.18), transparent 55%),
-              var(--bg);
+  background:
+    radial-gradient(1200px 700px at 20% 10%, rgba(97,240,193,0.18), transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, rgba(93,124,255,0.18), transparent 55%),
+    var(--bg);
   color: var(--text);
 }
