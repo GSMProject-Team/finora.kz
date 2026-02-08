@@ -1,36 +1,32 @@
 "use client";
 
 import React, { createContext, useContext, useMemo, useState } from "react";
-import type { Lang } from "./i18n";
-import { I18N } from "./i18n";
+import { I18N, Lang } from "./i18n";
 
 type Ctx = {
   lang: Lang;
-  setLang: (l: Lang) => void;
-  t: (key: keyof (typeof I18N)["kk"]) => any;
+  setLang: (l: Lang) => void; // <-- МІНЕ ОСЫ: => болуы керек
+  t: (key: keyof (typeof I18N)["kk"]) => string;
 };
 
-const LangContext = createContext<Ctx | null>(null);
+const LangCtx = createContext<Ctx | null>(null);
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("kk");
-
-  const setLang = (l: Lang) => setLangState(l);
+  const [lang, setLang] = useState<Lang>("kk");
 
   const value = useMemo<Ctx>(() => {
-    const dict = I18N[lang];
     return {
       lang,
       setLang,
-      t: (key) => dict[key],
+      t: (key) => I18N[lang][key] ?? String(key),
     };
   }, [lang]);
 
-  return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
+  return <LangCtx.Provider value={value}>{children}</LangCtx.Provider>;
 }
 
 export function useLang() {
-  const ctx = useContext(LangContext);
-  if (!ctx) throw new Error("useLang must be used within Providers");
+  const ctx = useContext(LangCtx);
+  if (!ctx) throw new Error("useLang must be used inside <Providers />");
   return ctx;
 }

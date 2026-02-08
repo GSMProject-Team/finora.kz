@@ -1,44 +1,41 @@
 "use client";
 
 import Image from "next/image";
-import { useLang } from "../providers";
 import { LANGS } from "../i18n";
+import { useLang } from "../providers";
 
 export default function Header() {
   const { lang, setLang, t } = useLang();
 
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-center gap-3">
-        <div className="relative h-10 w-10">
+    <div className="flex items-center justify-between gap-4">
+      <div className="flex items-center gap-3">
+        <div className="relative h-10 w-10 overflow-hidden rounded-xl bg-white/10">
           <Image
             src="/logo.png"
             alt="Finora.kz logo"
             fill
-            className="object-contain"
+            className="object-contain p-1"
             priority
           />
         </div>
-
-        <div className="text-left">
-          <div className="text-3xl font-semibold tracking-tight text-white">
-            {t("brand")}
-          </div>
+        <div>
+          <div className="text-xl font-semibold text-white">{t("brand")}</div>
+          <div className="text-sm text-white/60">{t("tagline")}</div>
         </div>
       </div>
 
-      <div className="mt-2 text-center text-white/70">{t("tagline")}</div>
-
-      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-white/60">
-        <span>{t("langLabel")}</span>
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-white/60">{t("langLabel")}</span>
         {LANGS.map((l) => (
           <button
             key={l}
             onClick={() => setLang(l)}
-            className={[
-              "rounded-md border px-3 py-1",
-              l === lang ? "border-white/40 bg-white/10 text-white" : "border-white/15 hover:bg-white/5",
-            ].join(" ")}
+            className={`rounded-md px-3 py-1 text-sm ${
+              lang === l
+                ? "bg-white/15 text-white"
+                : "bg-white/5 text-white/70 hover:bg-white/10"
+            }`}
           >
             {l.toUpperCase()}
           </button>
