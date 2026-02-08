@@ -1,51 +1,48 @@
 "use client";
 
 import Image from "next/image";
-import { LANGS } from "../i18n";
 import { useLang } from "../providers";
+import { LANGS } from "../i18n";
 
 export default function Header() {
   const { lang, setLang, t } = useLang();
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="flex items-center gap-3">
-        <div className="rounded-xl bg-white/5 border border-white/10 p-2">
+    <div className="w-full">
+      <div className="flex items-center justify-center gap-3">
+        <div className="relative h-10 w-10">
           <Image
             src="/logo.png"
             alt="Finora.kz logo"
-            width={44}
-            height={44}
+            fill
+            className="object-contain"
             priority
           />
         </div>
 
         <div className="text-left">
-          <div className="text-4xl font-semibold tracking-tight text-white">
+          <div className="text-3xl font-semibold tracking-tight text-white">
             {t("brand")}
           </div>
         </div>
       </div>
 
-      <div className="text-white/70 text-base">{t("tagline")}</div>
+      <div className="mt-2 text-center text-white/70">{t("tagline")}</div>
 
-      <div className="mt-2 flex items-center gap-2 text-white/60 text-sm">
-        <span>{t("lang")}</span>
-        <div className="flex gap-2">
-          {LANGS.map((x) => (
-            <button
-              key={x.key}
-              onClick={() => setLang(x.key)}
-              className={[
-                "rounded-md px-3 py-1 border",
-                lang === x.key ? "bg-white/15 border-white/30 text-white" : "bg-transparent border-white/10 hover:border-white/25",
-              ].join(" ")}
-              type="button"
-            >
-              {x.label}
-            </button>
-          ))}
-        </div>
+      <div className="mt-4 flex items-center justify-center gap-2 text-sm text-white/60">
+        <span>{t("langLabel")}</span>
+        {LANGS.map((l) => (
+          <button
+            key={l}
+            onClick={() => setLang(l)}
+            className={[
+              "rounded-md border px-3 py-1",
+              l === lang ? "border-white/40 bg-white/10 text-white" : "border-white/15 hover:bg-white/5",
+            ].join(" ")}
+          >
+            {l.toUpperCase()}
+          </button>
+        ))}
       </div>
     </div>
   );
