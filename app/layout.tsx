@@ -3,7 +3,7 @@ import { Providers } from "./providers";
 
 export const metadata = {
   title: "Finora.kz",
-  description: "Finora.kz — бухгалтерия, қаржы және заңгерлік қызметтер платформасы.",
+  description: "Accounting / Finance / Legal services platform",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
