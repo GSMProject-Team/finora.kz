@@ -1,18 +1,17 @@
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata = {
-  title: "Finora.kz — Tech • Finance • Legal",
-  description: "Finora — бухгалтерлік, қаржылық және заңгерлік-құқықтық қызметтерге арналған платформа.",
+  title: "Finora.kz",
+  description: "Finora.kz — бухгалтерия, қаржы және заңгерлік қызметтер платформасы.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="kk">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

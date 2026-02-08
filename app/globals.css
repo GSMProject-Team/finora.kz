@@ -2,7 +2,6 @@
 
 :root {
   --bg: #0b1020;
-  --text: rgba(255, 255, 255, 0.92);
 }
 
 html, body {
@@ -15,5 +14,5 @@ body {
     radial-gradient(1200px 700px at 20% 10%, rgba(97,240,193,0.18), transparent 60%),
     radial-gradient(900px 600px at 80% 30%, rgba(93,124,255,0.18), transparent 55%),
     var(--bg);
-  color: var(--text);
+  color: white;
 }
