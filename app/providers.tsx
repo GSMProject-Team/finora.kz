@@ -1,7 +1,8 @@
 "use client";
 
-import React, { createContext, useContext, useMemo, useState, useEffect } from "react";
-import { I18N, Lang } from "./i18n";
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import type { Lang } from "./lib/i18n";
+import { I18N } from "./lib/i18n";
 
 type Ctx = {
   lang: Lang;
@@ -15,8 +16,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("kk");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("lang") as Lang | null) ?? "kk";
-    setLangState(saved);
+    const saved = (localStorage.getItem("lang") as Lang | null) ?? null;
+    if (saved) setLangState(saved);
   }, []);
 
   const setLang = (l: Lang) => {
@@ -25,11 +26,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   };
 
   const value = useMemo<Ctx>(() => {
-    const dict = I18N[lang];
     return {
       lang,
       setLang,
-      t: (key) => dict[key] ?? String(key),
+      t: (key) => I18N[lang][key],
     };
   }, [lang]);
 
